@@ -4,7 +4,7 @@ module.exports = {
      *
      * This is for Browsersync.
      */
-    devUrl: "http://fullstack-template/",
+    devUrl: "http://postcreator.loc/",
 
     /**
      * Define config options.
