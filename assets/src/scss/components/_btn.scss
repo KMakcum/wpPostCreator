@@ -5,9 +5,10 @@
   font-family: $font;
   background: $color-main;
   color: #fff;
+  font-weight: 600;
   user-select: none;
   text-align: center;
-  transition: background-color .3s;
+  transition: all .3s;
   border-radius: 24px;
   cursor: pointer;
 
@@ -21,10 +22,31 @@
     padding: 10px 40px;
   }
 
-  &--icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+  &--border-bottom {
+    border-radius: 6px;
+    background: $color-hover;
+    border-bottom: $color-active 3px solid;
+    border-left: $color-active 1px solid;
+    border-right: $color-active 1px solid;
+    border-top: 0;
+
+    &:active {
+      background: $color-active;
+      border-color: $color-active;
+    }
+  }
+
+  &--shadow {
+    color: #524f4e;
+    background: white;
+    border-radius: 45px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+
+    &:hover {
+      background: #2EE59D;
+      box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
+      color: white;
+      transform: translateY(-7px);
+    }
   }
 }
