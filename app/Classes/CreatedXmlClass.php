@@ -55,9 +55,14 @@ class CreatedXmlClass
             $err_message['count_posts'] = 'Введите количество постов';
         }
 
-        // Проверка поля имени
+        // Проверка поля заголовка на заполненность
         if ( empty( $options['post_title'] ) ) {
             $err_message['post_title'] = 'Пожалуйста, введите заголовок записи';
+        }
+
+        // Проверка поля имени на заполненность
+        if ( !empty( $options['post_date'] ) && $this->validDate('25/05/2017')) {
+            $err_message['post_date'] = 'Неверный формат даты';
         }
 
 
@@ -73,8 +78,13 @@ class CreatedXmlClass
         wp_send_json_error(
             array(
                 'message' => $options
-            ),
+            )
         );
+    }
+
+    public function validDate($date) { // проверка на правильность формата даты
+        $d = \DateTime::createFromFormat('d/m/Y', $date);
+        return $d && $d->format('d/m/Y') === $date;
     }
 
     public function get_xml_file(){
@@ -96,7 +106,7 @@ class CreatedXmlClass
             wp_send_json_error(
                 array(
                     'message' => $response['message']
-                ),
+                )
             );
         }
 
