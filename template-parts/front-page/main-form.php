@@ -35,14 +35,16 @@
                             </label>
 
                             <label class="pk-radio">
-                                <input type="radio" name="post_type" value="custom_posts">
+                                <input type="radio" name="post_type" class="switcher" value="custom_posts">
                                 <span>Кастомный тип записи</span>
                             </label>
                         </div>
 
                         <div class="form_field form_field--full">
-                            <label for="post_type_name">Название типа записи. Например: posts, pages, products</label>
-                            <input type="text" id="post_type_name" name="post_type_name">
+                            <div class="form_field__hidden" data-radio="custom_posts">
+                                <label for="post_type_name">Название типа записи. Например: posts, pages, products</label>
+                                <input type="text" id="post_type_name" name="post_type_name">
+                            </div>
                         </div>
 
                     </div>
@@ -120,6 +122,8 @@
 <!--                    </label>-->
 <!--                </div>-->
 
+                <input type="radio" name="site_anticheck" id="site_anticheck" style="display: none !important;" value="true" checked="checked"/>
+                <input type="text" name="site_submitted" id="site_submitted" value="" style="display: none !important;"/>
 
                 <div class="form_field form_field--full">
                     <button class="btn btn--border-bottom"><?= __('Создать xml файл')?></button>

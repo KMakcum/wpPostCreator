@@ -10,7 +10,6 @@ export default function() {
     })
 
     const formSetBtns = document.querySelectorAll('.form_section__btn');
-
     formSetBtns && formSetBtns.forEach(btn => {
         btn.addEventListener('click', e => {
             let date = new Date(),
@@ -39,4 +38,23 @@ export default function() {
             });
         });
     })
+
+    const radioInps = document.querySelectorAll('.switcher');
+    radioInps && radioInps.forEach(radio => {
+        radio.addEventListener('click', e => {
+            let radioVal = radio.value;
+            let hiddenBlocks = document.querySelectorAll('[data-radio="'+radioVal+'"]');
+
+            if (hiddenBlocks.length) {
+                hiddenBlocks.forEach(block => {
+                    if (!radio.checked) {
+                    } else {
+                        block.style.maxHeight = block.scrollHeight + "px";
+                    }
+                });
+            }
+        });
+    })
+
+
 }

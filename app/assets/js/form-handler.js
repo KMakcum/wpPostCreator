@@ -10,6 +10,7 @@
                 url: form_data.ajax_url,
                 data: {
                     action: 'get_xml_file',
+                    nonce: form_data.nonce,
                     form: data,
                 },
                 method: 'POST',

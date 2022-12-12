@@ -25,12 +25,62 @@ class CreatedXmlClass
         wp_localize_script('formHandler', 'form_data',
             array(
                 'ajax_url' => site_url() . '/wp-admin/admin-ajax.php',
+                'nonce' => wp_create_nonce( 'form-nonce' ),
             )
+        );
+    }
+
+    protected function validate_fields ($nonce, $options) {
+        // Массив ошибок
+        $err_message = array();
+
+        // Проверяем nonce. Если проверкане прошла, то блокируем отправку
+        if ( ! wp_verify_nonce( $nonce, 'form-nonce' ) ) {
+            wp_die( 'Данные отправлены с стороннего адреса' );
+        }
+
+        // Проверяем на спам. Если скрытое поле заполнено или снят чек, то блокируем отправку
+        if ( false === $options['site_anticheck'] || ! empty( $options['site_submitted'] ) ) {
+            wp_die( 'Спам' );
+        }
+
+        // Проверка полей с проблемами
+        if ( (!empty( $options['count_posts'] )) ) {
+            if (!is_numeric($options['count_posts'])) {
+                $err_message['count_posts'] = 'Введите числовое значение количества постов';
+            } elseif ($options['count_posts'] < 1 || $options['count_posts'] > 100) {
+                $err_message['count_posts'] = 'Введите число в диапозоне от 1 до 100';
+            }
+        } else {
+            $err_message['count_posts'] = 'Введите количество постов';
+        }
+
+        // Проверка поля имени
+        if ( empty( $options['post_title'] ) ) {
+            $err_message['post_title'] = 'Пожалуйста, введите заголовок записи';
+        }
+
+
+        // Проверяем массив ошибок, если не пустой, то возвращаем ошибку
+        if ( $err_message ) {
+            wp_send_json_error(
+                array(
+                    'err_message' => $err_message
+                )
+            );
+        }
+
+        wp_send_json_error(
+            array(
+                'message' => $options
+            ),
         );
     }
 
     public function get_xml_file(){
         mb_parse_str($_POST['form'], $options);
+
+        $this->validate_fields($_POST['nonce'], $options);
 
         $response = $this->save_and_download_xml($options);
 
@@ -235,27 +285,4 @@ class CreatedXmlClass
 
 //        $dom->save("users.xml"); // Сохраняем полученный XML-документ в файл
     }
-
-    public function file_force_download($file) {
-        if (file_exists($file)) {
-            // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
-            // если этого не сделать файл будет читаться в память полностью!
-            if (ob_get_level()) {
-                ob_end_clean();
-            }
-            // заставляем браузер показать окно сохранения файла
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename=' . basename($file));
-            header('Content-Transfer-Encoding: binary');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            // читаем файл и отправляем его пользователю
-            readfile($file);
-            exit;
-        }
-    }
-
 }
