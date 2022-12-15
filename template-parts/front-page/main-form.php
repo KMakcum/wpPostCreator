@@ -56,7 +56,8 @@
                     <h2 class="form_section__title">Предустановки</h2>
 
                     <div class="form_section__btns">
-                        <div class="btn btn--border-bottom form_section__btn">Default</div>
+                        <div class="btn btn--border-bottom form_section__btn" data-settings="default">По умолчанию</div>
+                        <div class="btn btn--border-bottom form_section__btn" data-settings="clear">Очистить все поля</div>
                     </div>
                 </div>
 
@@ -75,7 +76,7 @@
 
                         <div class="form_field form_field--half">
                             <label for="post_date">Дата публикации</label>
-                            <input type="text" id="post_date" name="post_date">
+                            <input type="text" id="post_date" name="post_date" placeholder="гггг-мм-дд чч:мм:сс">
                         </div>
 
                         <div class="form_field form_field--half">
@@ -93,16 +94,20 @@
                             <input type="text" id="post_url" name="post_url">
                         </div>
 
-                        <div class="form_field form_field--half">
+                        <div class="form_field form_field--full">
+                            <label for="add_category">Добавить в категорию</label>
+                            <input class="accordion__link--single" data-link="category" type="checkbox" id="add_category" name="add_category">
+                        </div>
+
+                        <div class="form_field form_field--half accordion__panel--single" data-panel="category">
                             <label for="post_cat_name">Категория</label>
                             <input type="text" id="post_cat_name" name="post_cat_name">
                             <div class="form_field__desc">
                                 Если категории не существует на вашем сайте то она будет создана автоматически.<br>
-                                Оставьте поле пустым чтобы запись относилась к категории по умолчанию
                             </div>
                         </div>
 
-                        <div class="form_field form_field--half">
+                        <div class="form_field form_field--half accordion__panel--single" data-panel="category">
                             <label for="post_cat_url">Ярлык категории</label>
                             <input type="text" id="post_cat_url" name="post_cat_url">
                             <div class="form_field__desc">
