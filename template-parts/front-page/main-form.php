@@ -19,31 +19,31 @@
                         </div>
 
                         <div class="form_field form_field--full">
-                            <label class="pk-radio">
-                                <input type="radio" name="post_type" value="posts" checked>
-                                <span>Записи</span>
-                            </label>
+                            <div class="form_field__wrapper switcher-select">
+                                <label class="pk-radio">
+                                    <input type="radio" name="post_type" value="posts" checked>
+                                    <span>Записи</span>
+                                </label>
 
-                            <label class="pk-radio">
-                                <input type="radio" name="post_type" value="pages">
-                                <span>Страницы</span>
-                            </label>
+                                <label class="pk-radio">
+                                    <input type="radio" name="post_type" value="pages">
+                                    <span>Страницы</span>
+                                </label>
 
-                            <label class="pk-radio">
-                                <input type="radio" name="post_type" value="products">
-                                <span>Товары</span>
-                            </label>
+                                <label class="pk-radio">
+                                    <input type="radio" name="post_type" value="products">
+                                    <span>Товары</span>
+                                </label>
 
-                            <label class="pk-radio">
-                                <input type="radio" name="post_type" class="switcher" value="custom_posts">
-                                <span>Кастомный тип записи</span>
-                            </label>
-                        </div>
+                                <label class="pk-radio">
+                                    <input type="radio" name="post_type" value="custom_posts">
+                                    <span>Кастомный тип записи</span>
+                                </label>
 
-                        <div class="form_field form_field--full">
-                            <div class="form_field__hidden" data-radio="custom_posts">
-                                <label for="post_type_name">Название типа записи. Например: posts, pages, products</label>
-                                <input type="text" id="post_type_name" name="post_type_name">
+                                <div class="form_field__hidden" data-radio="custom_posts">
+                                    <label for="post_type_name">Название типа записи. Например: posts, pages, products</label>
+                                    <input type="text" id="post_type_name" name="post_type_name">
+                                </div>
                             </div>
                         </div>
 

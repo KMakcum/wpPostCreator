@@ -90,16 +90,21 @@ export default function() {
         });
     })
 
-    const radioInps = document.querySelectorAll('.switcher');
+    const radioInps = document.querySelectorAll('.switcher-select input[type="radio"]');
     radioInps && radioInps.forEach(radio => {
         radio.addEventListener('click', e => {
             let radioVal = radio.value;
+            let allHiddenBlocks = document.querySelectorAll('[data-radio]');
             let hiddenBlocks = document.querySelectorAll('[data-radio="'+radioVal+'"]');
 
+            if(allHiddenBlocks.length) {
+                allHiddenBlocks.forEach(block => {
+                    block.style.maxHeight = null;
+                });
+            }
             if (hiddenBlocks.length) {
                 hiddenBlocks.forEach(block => {
-                    if (!radio.checked) {
-                    } else {
+                    if (radio.checked) {
                         block.style.maxHeight = block.scrollHeight + "px";
                     }
                 });
