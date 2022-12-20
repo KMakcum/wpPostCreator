@@ -82,9 +82,9 @@ class CreatedXmlClass
         );
     }
 
-    public function validDate($date) { // проверка на правильность формата даты
-        $d = \DateTime::createFromFormat('d/m/Y', $date);
-        return $d && $d->format('d/m/Y') === $date;
+    public function validDate($date) {
+        $d = \DateTime::createFromFormat('YYYY-MM-DD HH:mm:ss', $date);
+        return $d && $d->format('YYYY-MM-DD HH:mm:ss') === $date;
     }
 
     public function get_xml_file(){
