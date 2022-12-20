@@ -95,8 +95,15 @@
                         </div>
 
                         <div class="form_field form_field--full">
-                            <label for="add_category">Добавить в категорию</label>
-                            <input class="accordion__link--single" data-link="category" type="checkbox" id="add_category" name="add_category">
+                            <label class="pk_checkbox">
+                                <input class="accordion__link--single"
+                                       value="add_cat"
+                                       data-link="category"
+                                       type="checkbox"
+                                       id="add_category"
+                                       name="add_category">
+                                <span>Добавить в категорию</span>
+                            </label>
                         </div>
 
                         <div class="form_field form_field--half accordion__panel--single" data-panel="category">

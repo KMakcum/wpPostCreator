@@ -19,7 +19,7 @@ export default function(){
 
     singleSomeLinks && singleSomeLinks.forEach(link => {
         link.addEventListener('click', e => {
-            e.preventDefault();
+            // e.preventDefault();//ломает чекбоксы
             accordionSingle(link);
         });
     });
