@@ -75,6 +75,11 @@
                         </div>
 
                         <div class="form_field form_field--half">
+                            <label for="post_url">Ярлык записи</label>
+                            <input type="text" id="post_url" name="post_url">
+                        </div>
+
+                        <div class="form_field form_field--full">
                             <label for="post_date">Дата публикации</label>
                             <input type="text" id="post_date" name="post_date" placeholder="гггг-мм-дд чч:мм:сс">
                         </div>
@@ -87,11 +92,6 @@
                         <div class="form_field form_field--half">
                             <label for="post_content">Полное описание</label>
                             <textarea id="post_content" name="post_content"></textarea>
-                        </div>
-
-                        <div class="form_field form_field--full">
-                            <label for="post_url">URL записи</label>
-                            <input type="text" id="post_url" name="post_url">
                         </div>
 
                         <div class="form_field form_field--full">

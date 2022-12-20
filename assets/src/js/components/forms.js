@@ -1,9 +1,17 @@
 import IMask from 'imask';
 import datepicker from 'js-datepicker'
+import moment from 'moment';
 
 export default function() {
     const phoneInputs = document.querySelectorAll('input[name="phone"]');
     const dateInputs = document.querySelectorAll('input[name="post_date"]');
+
+    datepicker('input[name="post_date"]', {
+        formatter: (input, date, instance) => {
+            const d = new Date();
+            input.value = d.toLocaleString("sv-SE")
+        }
+    });
 
     phoneInputs && phoneInputs.forEach(input => {
         IMask(input, {
@@ -11,16 +19,9 @@ export default function() {
         });
     });
 
-    datepicker('input[name="post_date"]', {
-        formatter: (input, date, instance) => {
-            const value = date.toLocaleDateString()
-            input.value = getDateFormat() // => '1/1/2099'
-        }
-    });
-    console.log(getDateFormat())
-
+    //todo: формат даты при смене в датапикере
     dateInputs && dateInputs.forEach(input => {
-        let momentFormat = 'YYYY-MM-DD HH:mm';
+        let momentFormat = 'YYYY-MM-DD HH:mm:ss';
         IMask(input, {
             mask: Date,
             pattern: momentFormat,
@@ -57,6 +58,11 @@ export default function() {
                     to: 23
                 },
                 mm: {
+                    mask: IMask.MaskedRange,
+                    from: 0,
+                    to: 59
+                },
+                ss: {
                     mask: IMask.MaskedRange,
                     from: 0,
                     to: 59
