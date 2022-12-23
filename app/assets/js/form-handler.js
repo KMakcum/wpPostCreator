@@ -15,6 +15,7 @@
                 },
                 method: 'POST',
                 success: function(response){
+                    console.log(response)
                     if (response.success && response.data.file_link) {
                         let link = document.createElement("a");
                         link.setAttribute('href',response.data.file_link);

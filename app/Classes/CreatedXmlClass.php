@@ -60,10 +60,11 @@ class CreatedXmlClass
             $err_message['post_title'] = 'Пожалуйста, введите заголовок записи';
         }
 
-        // Проверка поля имени на заполненность
-        if ( !empty( $options['post_date'] ) && $this->validDate('25/05/2017')) {
-            $err_message['post_date'] = 'Неверный формат даты';
-        }
+        // Проверка формата даты на валидность
+//        if ( !empty($options['post_date']) && !$this->validDate($options['post_date'])) {
+//            $err_message['post_date'] = 'Неверный формат даты';
+//        }
+        //todo: сделать валидацию даты
 
 
         // Проверяем массив ошибок, если не пустой, то возвращаем ошибку
@@ -74,17 +75,14 @@ class CreatedXmlClass
                 )
             );
         }
-
-        wp_send_json_error(
-            array(
-                'message' => $options
-            )
-        );
     }
 
-    public function validDate($date) {
-        $d = \DateTime::createFromFormat('YYYY-MM-DD HH:mm:ss', $date);
-        return $d && $d->format('YYYY-MM-DD HH:mm:ss') === $date;
+    public function validDate($d) {
+        $format = 'Y-m-d H:i:s';
+        $date = \DateTime::createFromFormat($format, $d);
+        $date->format('Y-m-d H:i:s');
+
+        return $date && $date->format('Y-m-d H:i:s') == $d;
     }
 
     public function get_xml_file(){
@@ -126,9 +124,23 @@ class CreatedXmlClass
         } else {
             $count_posts = 1;
         }
+//        wp_send_json_success(
+//            array(
+//                'message' => $options
+//            )
+//        );
 
-        $pub_date = date('r');
-        $post_date = date('Y-m-d H:i:s');
+        if (!empty($options['post_date']) && $options['post_date'] !== '____-__-__ __:__:__') {
+            $format = 'Y-m-d H:i:s';
+            $date = \DateTime::createFromFormat($format, $options['post_date']);
+
+            $pub_date = $date->format('r');
+            $post_date = $date->format('Y-m-d H:i:s');
+        } else {
+            $pub_date = date('r');
+            $post_date = date('Y-m-d H:i:s');
+        }
+
 
         for ($i = 1; $i <= $count_posts; $i++) {
             $items[$i] = array(

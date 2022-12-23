@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export default function() {
     const phoneInputs = document.querySelectorAll('input[name="phone"]');
-    const dateInputs = document.querySelectorAll('input[name="post_date"]');
+    const dateInputs = document.querySelectorAll('input[name="post_date21"]');
 
     datepicker('input[name="post_date"]', {
         formatter: (input, date, instance) => {
@@ -112,6 +112,16 @@ export default function() {
         });
     })
 
+    const catNameInput = document.querySelector('#post_cat_name');
+    catNameInput.addEventListener('change', function () {
+        this.val(function(i, val){
+            return translit(val);
+        });
+
+        return false;
+    });
+
+
     function defaultFields() {
 
         const defaultArr = new Map( [
@@ -139,18 +149,35 @@ export default function() {
     }
 
     function getDateFormat() {
-        let date = new Date(),
-            year = date.getFullYear(),
-            month = date.getMonth() + 1,
-            day = date.getDate(),
-            hours = date.getHours(),
-            minutes = date.getMinutes(),
-            seconds = (date.getSeconds() >=0 && date.getSeconds() <=9) ? '0'+date.getSeconds() : date.getSeconds();
-
-        //todo: разобраться с форматом даты. Есть проблемы с числавми одной цифры
-
-        // let d = year+'-'+month+'-'+day+' '+hours+':'+minutes+':'+seconds;
-
+        let date = new Date();
         return date.toLocaleString("sv-SE");
+    }
+
+    function translit(word){
+        var converter = {
+            'а': 'a',    'б': 'b',    'в': 'v',    'г': 'g',    'д': 'd',
+            'е': 'e',    'ё': 'e',    'ж': 'zh',   'з': 'z',    'и': 'i',
+            'й': 'y',    'к': 'k',    'л': 'l',    'м': 'm',    'н': 'n',
+            'о': 'o',    'п': 'p',    'р': 'r',    'с': 's',    'т': 't',
+            'у': 'u',    'ф': 'f',    'х': 'h',    'ц': 'c',    'ч': 'ch',
+            'ш': 'sh',   'щ': 'sch',  'ь': '',     'ы': 'y',    'ъ': '',
+            'э': 'e',    'ю': 'yu',   'я': 'ya'
+        };
+
+        word = word.toLowerCase();
+
+        var answer = '';
+        for (var i = 0; i < word.length; ++i ) {
+            if (converter[word[i]] == undefined){
+                answer += word[i];
+            } else {
+                answer += converter[word[i]];
+            }
+        }
+
+        answer = answer.replace(/[^-0-9a-z]/g, '-');
+        answer = answer.replace(/[-]+/g, '-');
+        answer = answer.replace(/^\-|-$/g, '');
+        return answer;
     }
 }
