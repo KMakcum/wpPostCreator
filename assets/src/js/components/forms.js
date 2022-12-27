@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export default function() {
     const phoneInputs = document.querySelectorAll('input[name="phone"]');
-    const dateInputs = document.querySelectorAll('input[name="post_date21"]');
+    const dateInputs = document.querySelectorAll('input[name="post_date"]');
 
     datepicker('input[name="post_date"]', {
         formatter: (input, date, instance) => {
@@ -71,6 +71,7 @@ export default function() {
         });
     });
 
+    // Заполнение всех полей кнопкой
     const formSetBtns = document.querySelectorAll('.form_section__btn');
     formSetBtns && formSetBtns.forEach(btn => {
         btn.addEventListener('click', e => {
@@ -90,6 +91,7 @@ export default function() {
         });
     })
 
+    // Скрытие/показ элемента по radio кнопки
     const radioInps = document.querySelectorAll('.switcher-select input[type="radio"]');
     radioInps && radioInps.forEach(radio => {
         radio.addEventListener('click', e => {
@@ -114,7 +116,7 @@ export default function() {
 
     const catNameInput = document.querySelector('#post_cat_name');
     catNameInput.addEventListener('change', function () {
-        this.val(function(i, val){
+        $(this).val(function(i, val){
             return translit(val);
         });
 

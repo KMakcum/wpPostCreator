@@ -64,7 +64,7 @@
     textarea {
       min-width: 100%;
       max-width: 100%;
-      min-height: 80px;
+      min-height: 200px;
 
       @include scrollbars(3px,#D9D9D9, transparent);
     }

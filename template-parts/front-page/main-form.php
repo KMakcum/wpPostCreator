@@ -2,9 +2,11 @@
 <section class="main_form section">
     <div class="container">
         <div class="main_form__wrapper">
-            <h1 class="main_form__title">Title</h1>
+            <h1 class="main_form__title">Создание постов для Wordpress</h1>
             <div class="main_form__text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores atque consectetur consequatur consequuntur corporis cum explicabo iure laboriosam magnam minima neque nesciunt non, odit officiis, perspiciatis, reiciendis sit velit veritatis. Alias blanditiis dignissimos id magni, natus numquam sed sit temporibus vero? Beatae eveniet id incidunt numquam quam rem sequi voluptate?
+                Данный сайт создан для быстрого наполнения и тестирования сайта во время разработки.
+                Он позволяет создать посты, страницы, товары и другие типы записей для Wordpress.
+                После генерации постов Вы получите файл в формате .xml для импорта путем стандартного функционала.
             </div>
             <form id="main_form" action="#" class="main_form__wrapper form">
 
@@ -26,12 +28,12 @@
                                 </label>
 
                                 <label class="pk-radio">
-                                    <input type="radio" name="post_type" value="pages">
+                                    <input type="radio" name="post_type" value="page">
                                     <span>Страницы</span>
                                 </label>
 
                                 <label class="pk-radio">
-                                    <input type="radio" name="post_type" value="products">
+                                    <input type="radio" name="post_type" value="product">
                                     <span>Товары</span>
                                 </label>
 
@@ -42,7 +44,7 @@
 
                                 <div class="form_field__hidden" data-radio="custom_posts">
                                     <label for="post_type_name">Название типа записи. Например: posts, pages, products</label>
-                                    <input type="text" id="post_type_name" name="post_type_name">
+                                    <input type="text" id="post_type_name" name="post_type_name" minlength="3" maxlength="30">
                                 </div>
                             </div>
                         </div>
@@ -85,7 +87,7 @@
                         </div>
 
                         <div class="form_field form_field--half">
-                            <label for="post_excerpt">Кртакое описание</label>
+                            <label for="post_excerpt">Краткое описание</label>
                             <textarea id="post_excerpt" name="post_excerpt"></textarea>
                         </div>
 
