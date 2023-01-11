@@ -56,8 +56,12 @@ class CreatedXmlClass
         }
 
         // Проверка поля post_type_name
-        if ( !empty( $options['post_type_name'] && preg_match('/^[a-z0-9-_]+$/i', $options['post_type_name']) ) ) {
-            $err_message['post_type_name'] = 'Разрешены только латинские буквы, - и _';
+        if ( $options['post_type'] == 'custom_posts') {
+            if (empty( $options['post_type_name'])) {
+                $err_message['post_type_name'] = 'Введите название типа записи';
+            } elseif(!preg_match('/^[a-z0-9-_]+$/i', $options['post_type_name'])) {
+                $err_message['post_type_name'] = 'Разрешены только латинские буквы, - и _';
+            }
         }
 
         // Проверка поля заголовка на заполненность
@@ -131,14 +135,15 @@ class CreatedXmlClass
         }
 
         if (!empty($options['post_date']) && $options['post_date'] !== '____-__-__ __:__:__') {
-            $format = 'Y-m-d H:i:s';
-            $date = \DateTime::createFromFormat($format, $options['post_date']);
-
-            $pub_date = $date->format('r');
-            $post_date = $date->format('Y-m-d H:i:s');
+            $date = $options['post_date'];
+            $pub_date = date('r', strtotime($date.' -3 hours'));
+            $post_date = date('Y-m-d H:i:s', strtotime($date));
+            $post_date_gmt = date('Y-m-d H:i:s', strtotime($date.' -3 hours'));
         } else {
+            $time_offset = time() + 3600 * 3; // +03:00
             $pub_date = date('r');
-            $post_date = date('Y-m-d H:i:s');
+            $post_date = date('Y-m-d H:i:s', $time_offset);
+            $post_date_gmt = date('Y-m-d H:i:s');
         }
 
         if (!empty($options['post_title'])) {
@@ -166,9 +171,11 @@ class CreatedXmlClass
         }
 
         if (!empty($options['post_type'])) {
-            $post_type = $options['post_type'];
-        } elseif ($options['post_type'] == 'custom_posts') {
-            $post_type = $options['post_type_name'];
+            if ($options['post_type'] !== 'custom_posts') {
+                $post_type = $options['post_type'];
+            } else {
+                $post_type = $options['post_type_name'];
+            }
         } else {
             $post_type = 'post';
         }
@@ -186,9 +193,9 @@ class CreatedXmlClass
                 'excerpt:encoded' => '<![CDATA['.$post_excerpt.']]>',
 //                'wp:post_id' => $i,
                 'wp:post_date' => '<![CDATA['.$post_date.']]>',
-                'wp:post_date_gmt' => '<![CDATA['.$post_date.']]>',
+                'wp:post_date_gmt' => '<![CDATA['.$post_date_gmt.']]>',
                 'wp:post_modified' => '<![CDATA['.$post_date.']]>',
-                'wp:post_modified_gmt' => '<![CDATA['.$post_date.']]>',
+                'wp:post_modified_gmt' => '<![CDATA['.$post_date_gmt.']]>',
                 'wp:comment_status' => '<![CDATA[closed]]>',
                 'wp:ping_status' => '<![CDATA[closed]]>',
                 'wp:post_name' => '<![CDATA['.$post_url.' '.$i.']]>',

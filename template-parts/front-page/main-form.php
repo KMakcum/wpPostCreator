@@ -23,7 +23,7 @@
                         <div class="form_field form_field--full">
                             <div class="form_field__wrapper switcher-select">
                                 <label class="pk-radio">
-                                    <input type="radio" name="post_type" value="posts" checked>
+                                    <input type="radio" name="post_type" value="post" checked>
                                     <span>Записи</span>
                                 </label>
 
