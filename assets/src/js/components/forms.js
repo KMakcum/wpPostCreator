@@ -1,12 +1,13 @@
 import IMask from 'imask';
 import datepicker from 'js-datepicker'
-import moment from 'moment';
+// import moment from 'moment';
 
 export default function() {
     const phoneInputs = document.querySelectorAll('input[name="phone"]');
-    const dateInputs = document.querySelectorAll('input[name="post_date"]');
+    // const dateInputs = document.querySelectorAll('input[name="post_date"]');
+    const dateInputs = false;
 
-    datepicker('input[name="post_date"]', {
+    dateInputs && datepicker('input[name="post_date"]', {
         formatter: (input, date, instance) => {
             const d = new Date();
             input.value = d.toLocaleString("sv-SE")
@@ -80,7 +81,7 @@ export default function() {
 
             switch (targetSettings) {
                 case 'default':
-                    defaultFields();
+                    setDefaultFields();
                     break;
                 case 'clear':
                     clearFields();
@@ -124,9 +125,9 @@ export default function() {
     });
 
 
-    function defaultFields() {
-
-        const defaultArr = new Map( [
+    function getDefaultFieldsArray(type) {
+        let defaultArr;
+        const defaultArrPost = new Map( [
             ['post_title', 'Заголовок записи'],
             // ['post_date', datePub],
             ['post_date', getDateFormat()],
@@ -136,10 +137,57 @@ export default function() {
             ['post_cat_name', 'Категория'],
             ['post_cat_url', 'kategoriya'],
         ]);
+        const defaultArrPage = new Map( [
+            ['post_title', 'Заголовок страницы'],
+            // ['post_date', datePub],
+            ['post_date', getDateFormat()],
+            ['post_content', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum possimus quaerat quos tempora tenetur? Commodi dolore est incidunt natus necessitatibus odio quas sequi vero voluptatum! Aut consectetur cupiditate debitis deserunt dolor error fugiat harum hic id labore, molestiae nostrum obcaecati, pariatur quibusdam quidem soluta voluptatum. Blanditiis corporis fugit possimus quam?'],
+            ['post_excerpt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, quisquam.'],
+            ['post_url', 'zagolovok_stranicy'],
+            ['post_cat_name', 'Категория'],
+            ['post_cat_url', 'kategoriya'],
+        ]);
+        const defaultArrProd = new Map( [
+            ['post_title', 'Заголовок товара'],
+            // ['post_date', datePub],
+            ['post_date', getDateFormat()],
+            ['post_content', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum possimus quaerat quos tempora tenetur? Commodi dolore est incidunt natus necessitatibus odio quas sequi vero voluptatum! Aut consectetur cupiditate debitis deserunt dolor error fugiat harum hic id labore, molestiae nostrum obcaecati, pariatur quibusdam quidem soluta voluptatum. Blanditiis corporis fugit possimus quam?'],
+            ['post_excerpt', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, quisquam.'],
+            ['post_url', 'zagolovok_tovara'],
+            ['post_cat_name', 'Категория'],
+            ['post_cat_url', 'kategoriya'],
+        ]);
+
+        switch (type) {
+            case 'post':
+                defaultArr = defaultArrPost;
+            break
+            case 'page':
+                defaultArr = defaultArrPage
+            break;
+            case 'product':
+                defaultArr = defaultArrProd
+            break;
+            default:
+                defaultArr = defaultArrPost;
+        }
+
+        return defaultArr;
+    }
+
+    function setDefaultFields() {
+        let defaultArr = [];
+
+        let postTypes = document.querySelectorAll('.switcher-select input[type="radio"]');
+        postTypes && postTypes.forEach(postType => {
+            if (postType.checked) {
+                defaultArr = getDefaultFieldsArray(postType.value);
+            }
+        });
 
         defaultArr.forEach(function(value,key) {
             let input = document.querySelector('#'+key);
-            input.value = value;
+            if (input) input.value = value;
         });
     }
 

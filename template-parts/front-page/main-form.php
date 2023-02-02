@@ -81,10 +81,12 @@
                             <input type="text" id="post_url" name="post_url">
                         </div>
 
+                        <?php if (false):?>
                         <div class="form_field form_field--full">
                             <label for="post_date">Дата публикации</label>
                             <input type="text" id="post_date" name="post_date" placeholder="гггг-мм-дд чч:мм:сс">
                         </div>
+                        <?php endif;?>
 
                         <div class="form_field form_field--half">
                             <label for="post_excerpt">Краткое описание</label>
