@@ -49,6 +49,7 @@
     "imask": "^6.4.2",
     "js-datepicker": "^5.18.2",
     "moment": "^2.29.4",
-    "swiper": "^8.0.6"
+    "swiper": "^8.0.6",
+    "tippy.js": "^6.3.7"
   }
 }

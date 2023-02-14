@@ -6,7 +6,7 @@
             <div class="main_form__text">
                 Данный сайт создан для быстрого наполнения и тестирования сайта во время разработки.
                 Он позволяет создать посты, страницы, товары и другие типы записей для Wordpress.
-                После генерации постов Вы получите файл в формате .xml для импорта путем стандартного функционала.
+                После генерации постов Вы получите файл в формате .xml для импорта стандартным функционалов Wordpress.
             </div>
             <form id="main_form" action="#" class="main_form__wrapper form">
 
@@ -77,7 +77,15 @@
                         </div>
 
                         <div class="form_field form_field--half">
-                            <label for="post_url">Ярлык записи</label>
+                            <label for="post_url">Ярлык записи
+
+                                <div class="tooltip"
+                                     data-tippy-content="«Ярлык» — это вариант названия, подходящий для URL. Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.">
+                                    <svg class="tooltip_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16ZM8 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1 3v4a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0Z"></path>
+                                    </svg>
+                                </div>
+                            </label>
                             <input type="text" id="post_url" name="post_url">
                         </div>
 
@@ -96,6 +104,22 @@
                         <div class="form_field form_field--half">
                             <label for="post_content">Полное описание</label>
                             <textarea id="post_content" name="post_content"></textarea>
+                        </div>
+
+                        <div class="form_field form_field--full">
+                            <label class="pk_checkbox">
+                                <input value="add_image"
+                                       type="checkbox"
+                                       id="add_image"
+                                       name="add_image">
+                                <span>Добавить в изображение</span>
+                            </label>
+
+                            <div class="tooltip" data-tippy-content="test">
+                                <svg class="tooltip_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16ZM8 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1 3v4a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0Z"></path>
+                                </svg>
+                            </div>
                         </div>
 
                         <div class="form_field form_field--full">
