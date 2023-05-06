@@ -20,28 +20,13 @@
     <header class="header">
         <div class="header__content container">   
             <a href="/" class="header__logo">
-                <svg width="120" height="60">
+                <?php if (false):?>
+                <svg>
                     <use xlink:href="<?= DIST_URI . '/images/icons/svg-sprite.svg#logo'; ?>"></use>
                 </svg>
-<!--                <img src="--><?//= DIST_URI . '/images/icons/logo.png'; ?><!--" alt="PostCreator-logo">-->
+                <?php endif;?>
+                <img src="<?= DIST_URI . '/images/icons/logo.png'; ?>" alt="PostCreator-logo">
             </a>
-<!--         -->
-<!--            --><?php
-//                $args = array(
-//                    'theme_location' => 'header-menu',
-//                    'container' => 'nav',
-//                    'menu_class' => 'header__nav nav',
-//                );
-//                wp_nav_menu($args);
-//            ?>
-
-            <div class="nav-backdrop"></div>
-
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </header>
 
