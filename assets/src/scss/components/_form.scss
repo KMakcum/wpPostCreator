@@ -35,7 +35,8 @@
     }
 
     label {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       margin-bottom: 8px;
     }
 
@@ -135,7 +136,7 @@
   }
 }
 
-.pk_checkbox {
+.pc_checkbox {
   /* для элемента input c type="checkbox" */
   &>input {
     position: absolute;
@@ -174,8 +175,8 @@
       background-color: #e9ecef;
     }
   }
-  /* для элемента label, связанного с .pk_checkbox */
-  &>span {
+  /* для элемента label, связанного с .pc_checkbox */
+  &>span.form-field__label {
     display: inline-flex;
     align-items: center;
     user-select: none;

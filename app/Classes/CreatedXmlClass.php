@@ -75,6 +75,10 @@ class CreatedXmlClass
 //        }
         //todo: сделать валидацию даты
 
+        // Проверка полей категории на заполненность
+        if ( $options['add_category'] && ( empty($options['post_cat_name']) || empty($options['post_cat_url']) ) ) {
+            $err_message['category'] = 'Поля для категории должны быть заполнены';
+        }
 
         // Проверяем массив ошибок, если не пустой, то возвращаем ошибку
         if ( $err_message ) {
@@ -293,10 +297,12 @@ class CreatedXmlClass
                 $dom_item->appendChild($item_field);
             }
 
-            $category = $dom->createElement('category', '<![CDATA[Категория 1]]>');
-            $category->setAttribute("domain", 'category');
-            $category->setAttribute("nicename", 'kategoriya-1');
-            $dom_item->appendChild($category);
+            if($options['add_category']){
+                $category = $dom->createElement('category', '<![CDATA['.$options['post_cat_name'].']]>');
+                $category->setAttribute("domain", 'category');
+                $category->setAttribute("nicename", $options['post_cat_url']);
+                $dom_item->appendChild($category);
+            }
 
             $channel->appendChild($dom_item);
         }

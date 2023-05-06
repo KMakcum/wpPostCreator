@@ -79,12 +79,12 @@
                         <div class="form_field form_field--half">
                             <label for="post_url">Ярлык записи
 
-                                <div class="tooltip"
+                                <span class="tooltip"
                                      data-tippy-content="«Ярлык» — это вариант названия, подходящий для URL. Обычно содержит только латинские буквы в нижнем регистре, цифры и дефисы.">
                                     <svg class="tooltip_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
                                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16ZM8 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1 3v4a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0Z"></path>
                                     </svg>
-                                </div>
+                                </span>
                             </label>
                             <input type="text" id="post_url" name="post_url">
                         </div>
@@ -107,36 +107,27 @@
                         </div>
 
                         <div class="form_field form_field--full">
-                            <label class="pk_checkbox">
-                                <input value="add_image"
-                                       type="checkbox"
-                                       id="add_image"
-                                       name="add_image">
-                                <span>Добавить в изображение</span>
-                            </label>
-
-                            <div class="tooltip" data-tippy-content="test">
-                                <svg class="tooltip_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16ZM8 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1 3v4a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0Z"></path>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="form_field form_field--full">
-                            <label class="pk_checkbox">
+                            <label class="pc_checkbox">
                                 <input class="accordion__link--single"
-                                       value="add_cat"
+                                       value="1"
                                        data-link="category"
                                        type="checkbox"
                                        id="add_category"
                                        name="add_category">
-                                <span>Добавить в категорию</span>
+                                <span class="form-field__label">Добавить в категорию</span>
+
+                                <span class="tooltip" data-tippy-content="При выборе посты будут добавлены в конкретную категорию.
+                                Не нажимайте этот чекбокс если хотите чтобы посты добавились в категорию по умолчанию.">
+                                    <svg class="tooltip_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16ZM8 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1 3v4a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0Z"></path>
+                                    </svg>
+                                </span>
                             </label>
                         </div>
 
                         <div class="form_field form_field--half accordion__panel--single" data-panel="category">
                             <label for="post_cat_name">Категория</label>
-                            <input type="text" id="post_cat_name" name="post_cat_name">
+                            <input type="text" id="post_cat_name" name="post_cat_name" value="">
                             <div class="form_field__desc">
                                 Если категории не существует на вашем сайте то она будет создана автоматически.<br>
                             </div>
@@ -144,9 +135,9 @@
 
                         <div class="form_field form_field--half accordion__panel--single" data-panel="category">
                             <label for="post_cat_url">Ярлык категории</label>
-                            <input type="text" id="post_cat_url" name="post_cat_url">
+                            <input type="text" id="post_cat_url" name="post_cat_url" value="">
                             <div class="form_field__desc">
-                                Оставьте поле пустым и ярлык сформируется транслитом автоматически
+                                Оставьте поле пустым и ярлык сформируется автоматически
                             </div>
                         </div>
 

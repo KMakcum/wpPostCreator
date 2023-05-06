@@ -115,15 +115,22 @@ export default function() {
         });
     })
 
-    const catNameInput = document.querySelector('#post_cat_name');
-    catNameInput.addEventListener('change', function () {
-        $(this).val(function(i, val){
-            return translit(val);
-        });
-
-        return false;
+    const postTitleInput = document.querySelector('#post_title');
+    postTitleInput.addEventListener('change', function () {
+        updateURL(document.querySelector('#post_url'), this)
     });
 
+    const catNameInput = document.querySelector('#post_cat_name');
+    catNameInput.addEventListener('change', function () {
+        updateURL(document.querySelector('#post_cat_url'), this)
+    });
+
+    function updateURL(urlField, nameField) {
+        if (!urlField || !nameField) return false;
+        const nameVal = nameField.value;
+
+        urlField.value = translit(nameVal)
+    }
 
     function getDefaultFieldsArray(type) {
         let defaultArr;
