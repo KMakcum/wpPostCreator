@@ -20,9 +20,10 @@
     <header class="header">
         <div class="header__content container">   
             <a href="/" class="header__logo">
-                <svg width="50" height="30">
+                <svg width="120" height="60">
                     <use xlink:href="<?= DIST_URI . '/images/icons/svg-sprite.svg#logo'; ?>"></use>
                 </svg>
+<!--                <img src="--><?//= DIST_URI . '/images/icons/logo.png'; ?><!--" alt="PostCreator-logo">-->
             </a>
 <!--         -->
 <!--            --><?php
